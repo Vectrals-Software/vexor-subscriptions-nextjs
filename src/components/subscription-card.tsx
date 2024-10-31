@@ -15,6 +15,15 @@ const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ s
             try {
                 const response = await vexor.subscribe.stripe(subscription)
 
+                // Get the identifier from the response
+                const identifier = response.result.identifier 
+                // You can use the identifier to track the operation in your database or ny other storage you use in your application and match it with the webhooks events
+
+                // Don't do this! This is just for demonstration purposes
+                alert(`✅ Identifier: ${identifier}`)
+
+                // Identifier: 48124d37-cc1e-4baf-94df-f27eb39f0308
+
                 window.location.href = response.result.payment_url;
             } catch (error) {
                 console.log(error);
