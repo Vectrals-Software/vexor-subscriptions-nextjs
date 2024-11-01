@@ -1,5 +1,6 @@
 // src/app/page.tsx
  
+import PortalCard from "@/components/portal-card";
 import SubscriptionCard from "@/components/subscription-card";
 import { VexorSubscriptionBody } from "vexor";
  
@@ -22,6 +23,8 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center w-full max-w-4xl">
         <h1 className="text-3xl font-bold mb-8">Subscribe to our plan</h1>
           <SubscriptionCard subscription={subscriptionPlan} />
+          <h1 className="text-3xl font-bold mb-8 mt-24">Manage your subscription</h1>
+          <PortalCard/>
       </main>
     </div>
   );
