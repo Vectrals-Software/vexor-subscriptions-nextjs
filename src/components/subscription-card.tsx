@@ -1,27 +1,26 @@
 // src/components/subscription-card.tsx
-
+ 
 "use client"; // Mark it as a client component
-
+ 
 import { vexor } from "@/lib/vexor";
 import { useTransition } from "react";
-import { VexorSubscriptionBody } from "vexor";
-
+import { VexorSubscriptionBody, VexorSubscriptionResponse } from "vexor";
+ 
 const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ subscription }) => {
-
     const [isPending, startTransition] = useTransition();
-
+ 
     const handleSubscribe = async () => {
         startTransition(async () => {
             try {
-                const response = await vexor.subscribe.stripe(subscription)
-
-                window.location.href = response.result.payment_url;
+                const response : VexorSubscriptionResponse = await vexor.subscribe.stripe(subscription)
+ 
+                window.location.href = response.payment_url;
             } catch (error) {
                 console.log(error);
             }
         });
     }
-
+ 
     return (
         <div className="w-[500px] max-w-full border rounded-lg p-6">
             <div className="mb-6 gap-3 flex flex-col justify-center items-center">
@@ -33,12 +32,13 @@ const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ s
                 <button
                     onClick={handleSubscribe}
                     disabled={isPending}
-                    className="w-full bg-foreground text-background py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed">
+                    className="w-full bg-foreground text-background py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                     {isPending ? 'Subscribing...' : 'Subscribe'}
                 </button>
             </div>
         </div>
-    );
-};
-
+    )
+}
+ 
 export default SubscriptionCard;
