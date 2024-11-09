@@ -4,7 +4,7 @@
 
 import { vexor } from "@/lib/vexor";
 import { useTransition } from "react";
-import { VexorSubscriptionBody } from "vexor";
+import { VexorSubscriptionBody, VexorSubscriptionResponse } from "vexor";
 
 const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ subscription }) => {
 
@@ -13,10 +13,10 @@ const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ s
     const handleSubscribe = async () => {
         startTransition(async () => {
             try {
-                const response = await vexor.subscribe.stripe(subscription)
+                const response : VexorSubscriptionResponse = await vexor.subscribe.mercadopago(subscription)
 
                 // Get the identifier from the response
-                const identifier = response.result.identifier 
+                const identifier = response.identifier
                 // You can use the identifier to track the operation in your database or ny other storage you use in your application and match it with the webhooks events
 
                 // Don't do this! This is just for demonstration purposes
@@ -24,7 +24,7 @@ const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ s
 
                 // Identifier: 48124d37-cc1e-4baf-94df-f27eb39f0308
 
-                window.location.href = response.result.payment_url;
+                window.location.href = response.payment_url;
             } catch (error) {
                 console.log(error);
             }

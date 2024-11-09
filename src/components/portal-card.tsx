@@ -4,6 +4,7 @@
  
 import { vexor } from "@/lib/vexor";
 import { useTransition } from "react";
+import { VexorPortalResponse } from "vexor";
  
 const PortalCard: React.FC = () => {
  
@@ -13,13 +14,13 @@ const PortalCard: React.FC = () => {
         startTransition(async () => {
             try {
                 // You can also use directly vexor.portal.stripe if you want. This time we're going to use the generic vexor.portal method and pass the platform in the parameters.
-                const response = await vexor.portal({
-                    platform: 'stripe',
-                    customerId: 'cus_123ABC',
-                    returnUrl: 'http://localhost:3000'
+                const response : VexorPortalResponse = await vexor.portal({
+                    platform: 'mercadopago',
+                    identifier: 'abc-123-def-456',
+                    returnUrl: 'https://www.example.com'
                 })
  
-                window.location.href = response.result.portal_url
+                window.location.href = response.portal_url
  
             } catch (error) {
                 console.log(error);

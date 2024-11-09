@@ -5,12 +5,12 @@ import SubscriptionCard from "@/components/subscription-card";
 import { VexorSubscriptionBody } from "vexor";
  
 const subscriptionPlan: VexorSubscriptionBody = {
-  name: 'Awesome Subscription Plan',
+  name: 'PONY RICASA 🦄',
   description: 'Cool description for the plan that customers will see 😎',
   interval: 'month',
-  price: 99,
-  currency: 'USD',
-  successRedirect: 'http://localhost:3000/success',
+  price: 1000,
+  currency: 'ARS',
+  successRedirect: 'https://algorithm-database-campaign-emirates.trycloudflare.com',
   customer: {
       email: 'test_customer@email.com',
       name: 'Test Customer'
