@@ -2,9 +2,9 @@
 
 "use client"; // Mark it as a client component
 
-import { vexor } from "@/lib/vexor";
+import { handleSubscription } from "@/app/actions/subscribe";
 import { useTransition } from "react";
-import { VexorSubscriptionBody, VexorSubscriptionResponse } from "vexor";
+import { VexorSubscriptionBody } from "vexor";
 
 const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ subscription }) => {
 
@@ -13,18 +13,8 @@ const SubscriptionCard: React.FC<{ subscription: VexorSubscriptionBody }> = ({ s
     const handleSubscribe = async () => {
         startTransition(async () => {
             try {
-                const response : VexorSubscriptionResponse = await vexor.subscribe.mercadopago(subscription)
-
-                // Get the identifier from the response
-                const identifier = response.identifier
-                // You can use the identifier to track the operation in your database or ny other storage you use in your application and match it with the webhooks events
-
-                // Don't do this! This is just for demonstration purposes
-                alert(`✅ Identifier: ${identifier}`)
-
-                // Identifier: 48124d37-cc1e-4baf-94df-f27eb39f0308
-
-                window.location.href = response.payment_url;
+                const response = await handleSubscription(subscription)
+                console.log(response);
             } catch (error) {
                 console.log(error);
             }

@@ -10,5 +10,5 @@ This project demonstrates how to integrate Vexor Subscriptions into a Next.js ap
 
 This example was created by following the official Vexor Subscriptions documentation. For more detailed information and advanced usage, please refer to the official documentation:
 
-[Vexor Subscriptions Documentation](https://docs.vexorpay.com/en/docs/core/guides/subscriptions)
-[Vexor SDK Reference](https://docs.vexorpay.com/en/docs/core/sdk-reference/overview)
+[Vexor Subscriptions Documentation](https://docs.vexorpay.com/docs/core/guides/subscriptions)
+[Vexor SDK Reference](https://docs.vexorpay.com/docs/core/sdk-reference/overview)
